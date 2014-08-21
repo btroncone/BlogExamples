@@ -173,6 +173,7 @@ UpgradeLog*.htm
 # Webstorm
 **/.idea/workspace.xml 
 **/.idea/tasks.xml
+.idea
 
 # Microsoft Fakes
 FakesAssemblies/
