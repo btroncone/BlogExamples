@@ -1,0 +1,10 @@
+{
+  "name": "BlogExamples",
+  "version": "0.0.0",
+  "homepage": "https://github.com/btroncone/BlogExamples",
+  "authors": [
+    "btroncone <btroncone@gmail.com>"
+  ],
+  "description": "Code examples from BrianTroncone.com",
+  "license": "MIT"
+}
