@@ -170,5 +170,9 @@ UpgradeLog*.htm
 *.bim.layout
 *.bim_*.settings
 
+# Webstorm
+**/.idea/workspace.xml 
+**/.idea/tasks.xml
+
 # Microsoft Fakes
 FakesAssemblies/
