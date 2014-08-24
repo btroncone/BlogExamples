@@ -3,7 +3,9 @@
 }
 <div ng-app="routeExample">
     <h2>Angular Routes inside MVC app. <small>This page is served by MVC</small></h2>
+    <h4>Links from .cshtml page</h4>
     <ul>
+        <li><a href="#">Go to Default View (Handled by ngRoute)</a></li>
         <li><a href="#/viewOne">Go to View One (Handled by ngRoute)</a></li>
         <li><a href="#/viewTwo">Go to View Two (Handled by ngRoute)</a></li>
         <li><a href="@Url.Action("Index")">Go Back to MVC Index</a></li>

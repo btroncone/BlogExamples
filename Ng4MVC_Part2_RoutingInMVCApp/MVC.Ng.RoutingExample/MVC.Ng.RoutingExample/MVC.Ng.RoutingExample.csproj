@@ -121,6 +121,7 @@
   <ItemGroup>
     <Content Include="app\app.js" />
     <Content Include="app\route-config.js" />
+    <Content Include="app\views\default.html" />
     <Content Include="app\views\viewOne.html" />
     <Content Include="app\views\viewTwo.html" />
     <Content Include="Content\bootstrap.css" />
