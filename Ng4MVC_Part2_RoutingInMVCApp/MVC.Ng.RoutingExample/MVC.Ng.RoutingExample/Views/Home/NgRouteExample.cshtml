@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Angular + MVC";
+}
+<div ng-app="routeExample">
+    <h2>Angular Routes inside MVC app. <small>This page is served by MVC</small></h2>
+    <ul>
+        <li><a href="#/viewOne">Go to View One (Handled by ngRoute)</a></li>
+        <li><a href="#/viewTwo">Go to View Two (Handled by ngRoute)</a></li>
+        <li><a href="@Url.Action("Index")">Go Back to MVC Index</a></li>
+    </ul>
+    <div ng-view></div>
+</div>
+
