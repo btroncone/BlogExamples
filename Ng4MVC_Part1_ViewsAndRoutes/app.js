@@ -21,3 +21,20 @@
                 .otherwise({redirectTo: "/"});
         });
 })();
+
+//var athletes = [
+//    {
+//        name: "Joe",
+//        rating: 8,
+//        sports: [ 'Soccer', 'Basketball']
+//    },
+//    {
+//        name: "Bob",
+//        rating: 9,
+//        sports: ['Basketball', 'Baseball', 'Tennis']
+//    },
+//    {
+//        name: "Frank",
+//        rating: 6,
+//        sports: ['Football', 'Hockey', 'Golf']
+//    }]

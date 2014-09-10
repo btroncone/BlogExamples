@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html ng-app="ngTemplatingDemo">
+
+<head>
+  <script data-require="angular.js@*" data-semver="1.3.0-beta.5" src="https://code.angularjs.org/1.3.0-beta.5/angular.js"></script>
+  <script src="app.js"></script>
+  <script src="simpleController.js"></script>
+  <script src="simpleService.js"></script>
+  <link data-require="bootstrap-css@*" data-semver="3.2.0" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body ng-controller="simpleController as vm">
+  <div class="container">
+    <h3 class="text-primary" id="mainMenu">Angular Templating Fundamentals for ASP.NET MVC Developers<small> (Some comparisons are admittedly loose.)</small></h3>
+    <div class="list-group">
+      <a href="#modelBinding" class="list-group-item">Model Binding</a>
+      <a href="#ngRepeat" class="list-group-item">Repeating elements</a>
+      <a href="#ngShow" class="list-group-item">Show / Hide elements</a>
+      <a href="#addRemoveClasses" class="list-group-item">Add / Remove Classes</a>
+      <a href="#filters" class="list-group-item">Filters</a>
+      <a href="#selects" class="list-group-item">Select Lists</a>
+      <a href="#allTogetherNow" class="list-group-item">All together now!</a>
+    </div>
+
+    <h3 class="text-primary" id="modelBinding">Model Binding <small>(Similar to @Model.* ...but two way!)</small></h3>
+    <p>{{vm.simpleModel.name}} - {{vm.simpleModel.language}}</p>
+    <input type="text" class="input" ng-model="twoWayDataBinding" placeholder="start typing..." />
+    <p>{{twoWayDataBinding}}</p>
+    <a href="#mainMenu" alt="Back to Top">Back to top</a>
+    <hr/>
+
+    <h3 class="text-primary" id="ngRepeat">ngRepeat <small>(Similar to @foreach)</small></h3>
+    <dl class="dl-horizontal" ng-repeat="athlete in vm.sampleData">
+      <dt>Athlete Name</dt>
+      <dd>{{athlete.name}}</dd>
+      <dt>Sports</dt>
+      <dd ng-repeat="sport in athlete.sports">{{sport}}</dd>
+      <dt>Rating</dt>
+      <dd>{{athlete.rating}}</dd>
+    </dl>
+    <a href="#mainMenu" alt="Back to Top">Back to top</a>
+    <hr/>
+
+    <h3 class="text-primary" id="ngShow">ngShow - ngHide - ngIf <small>Similar to @if( )</small></h3>
+    <div class="alert alert-success" ng-show="vm.helloWorld" role="alert">Hello World!</div>
+    <div class="alert alert-danger" ng-hide="vm.helloWorld" role="alert">Goodbye World!</div>
+    <p>
+      <button class="btn btn-primary" ng-click="vm.toggleHelloWorld()">Toggle!</button>
+    </p>
+    <h5 class="text-primary">ngIf Examples</h5>
+    <h6>If athlete has rating equal to 9...</h6>
+    <ul ng-repeat="athlete in vm.sampleData" ng-if="athlete.rating === 9">
+      <li>{{athlete.name}} - {{athlete.rating}}</li>
+    </ul>
+    <h6>If athlete has rating greater than 6...</h6>
+    <ul ng-repeat="athlete in vm.sampleData" ng-if="athlete.rating > 6">
+      <li>{{athlete.name}} - {{athlete.rating}}</li>
+    </ul>
+    <a href="#mainMenu" alt="Back to Top">Back to top</a>
+    <hr/>
+
+    <h3 class="text-primary" id="addRemoveClasses">ngClass <small>Similar to @(Model.* ? "class" : "anotherClass" )</small></h3>
+    <h6>Apply Class: {{vm.applyClass}}</h6>
+    <p class="lead" ng-class="{'bg-danger': vm.applyClass}">ngClass Example!</p>
+    <p>Toggle Class:
+      <input type="checkbox" ng-model="vm.applyClass">
+    </p>
+    <a href="#mainMenu" alt="Back to Top">Back to top</a>
+    <hr/>
+
+    <h3 class="text-primary" id="filters">ng Filters <small>Similar to string formatting (except filter...filter)</small></h3>
+    <ol>
+      <li><strong>No Filter:</strong> {{vm.filterModel.firstName}} <strong> Uppercase Filter:</strong> {{vm.filterModel.firstName | uppercase}}</li>
+      <li><strong>No Filter:</strong> {{vm.filterModel.amount}} <strong> Currency Filter:</strong> {{vm.filterModel.amount | currency}}</li>
+      <li><strong>No Filter:</strong> {{vm.filterModel.number}} <strong> Number Filter:</strong> {{vm.filterModel.number | number : 0}}</li>
+    </ol>
+    <h5 class="text-primary">Dynamic Filter / OrderBy <small>(No jQuery plugin needed!)</small></h5>
+    <div class="margin-bot-10">
+      Filter:
+      <input ng-model="textFilter">Order By:
+      <select ng-model="sortOrder">
+        <option value="+rating">Rating Ascending</option>
+        <option value="-rating">Rating Descending</option>
+        <option value="+name">Name</option>
+      </select>
+    </div>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="athlete in vm.sampleData | filter: textFilter | orderBy: sortOrder">
+          <td>{{athlete.name}}</td>
+          <td>{{athlete.rating}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <a href="#mainMenu" alt="Back to Top">Back to top</a>
+    <hr/>
+
+    <h3 class="text-primary" id="selects">Select Lists <small>(Generally accomplished with @Html.DropDownList() or Editor Templates)</small></h3>
+    <select ng-model="vm.selectedPet" ng-options="pet.name for pet in vm.pets"></select>
+    <p class="text-success">{{vm.selectedPet}} is selected!</p>
+    <h5 class="text-primary">Grouped Select List</h5>
+    <select ng-model="vm.otherSelectedPet" ng-options="pet.name group by pet.breed for pet in vm.pets"></select>
+    <p class="text-success">{{vm.otherSelectedPet}} is selected!</p>
+    <a href="#mainMenu" alt="Back to Top">Back to top</a>
+    <hr/>
+
+    <h3 class="text-primary" id="allTogetherNow">All together now!</h3>
+    <div class="margin-bot-10">
+      Filter:
+      <input ng-model="textFilterAllTogether">
+    </div>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="athlete in vm.sampleData | filter: textFilterAllTogether" ng-class="{'success': athlete.rating === 10, 'warning': athlete.rating > 6 && athlete.rating < 10, 'danger': athlete.rating <= 6}">
+          <td>{{athlete.name}}</td>
+          <td>{{athlete.rating}} <i class="glyphicon glyphicon-plus" ng-click="vm.increaseRating($index)" ng-if="athlete.rating < 10"></i><i class="glyphicon glyphicon-minus" ng-click="vm.decreaseRating($index)" ng-if="athlete.rating > 0"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li class="text-success">*Perfect!</li>
+      <li class="text-warning">*Above Average!</li>
+      <li class="text-danger">*Below Average!</li>
+    </ul>
+    <a href="#mainMenu" alt="Back to Top">Back to top</a>
+  </div>
+
+</body>
+
+</html>
