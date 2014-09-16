@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="communicationDemoApp">
+<head>
+  <link data-require="bootstrap-css@*" data-semver="3.2.0" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+  <script data-require="angular.js@*" data-semver="1.3.0-beta.5" src="https://code.angularjs.org/1.3.0-beta.5/angular.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js"></script>
+  <script src="demoService.js"></script>
+  <script src="firstController.js"></script>
+  <script src="secondController.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="col-md-8" ng-controller="firstController as vm">
+      <h2>Controller 1</h2>
+      <form role="form">
+        <div class="form-group">
+          <label for="Name">Name</label>
+          <input type="text" class="form-control" id="Name" placeholder="Enter Name" ng-model="vm.person.name">
+        </div>
+        <div class="form-group">
+          <label for="Age">Age</label>
+          <input type="text" class="form-control" id="Age" placeholder="Enter Age" ng-model="vm.person.age">
+        </div>
+        <button type="button" class="btn btn-success" ng-click="vm.addPerson()">Add Person</button>
+      </form>
+    </div>
+    <div class="col-md-4" ng-controller="secondController as vm">
+      <h2>Controller 2</h2>
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="person in vm.people">
+            <td>{{person.name}}</td>
+            <td>{{person.age}}</td>
+            <td>
+              <button type="button" class="btn btn-danger btn-xs" ng-click="vm.removePerson($index)">
+                <span class="glyphicon glyphicon-remove"></span> Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
